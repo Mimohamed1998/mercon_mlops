@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import mlflow.pyfunc
-import mlflow.sklearn
+import mlflow
 
 # Load your MLflow model
 mlflow.set_tracking_uri("http://127.0.0.1:5000/")
