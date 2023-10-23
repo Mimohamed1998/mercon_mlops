@@ -1,14 +1,15 @@
-import streamlit as st
-import pandas as pd
+"""strealit app"""
 import mlflow
+import pandas as pd
+import streamlit as st
 
 # Load your MLflow model
 mlflow.set_tracking_uri("http://127.0.0.1:5000/")
 
-model_name = "xgb_california"
-stage = "Staging"
+MODEL_NAME = "xgb_california"
+STAGE = "Staging"
 
-loaded_model = mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{stage}")
+loaded_model = mlflow.pyfunc.load_model(model_uri=f"models:/{MODEL_NAME}/{STAGE}")
 
 
 # Title and description
@@ -27,7 +28,7 @@ feature_names = [
     "Population",
     "AveOccup",
     "Latitude",
-    "Longitude"
+    "Longitude",
 ]
 
 # Create input fields for user
@@ -44,5 +45,7 @@ if st.sidebar.button("Predict"):
 
 # Display a sample of the California housing dataset
 st.write("Sample of California Housing Dataset:")
-california_housing = pd.read_csv("https://raw.githubusercontent.com/ageron/handson-ml2/master/datasets/housing/housing.csv")
+california_housing = pd.read_csv(
+    "https://raw.githubusercontent.com/ageron/handson-ml2/master/datasets/housing/housing.csv"
+)
 st.write(california_housing.head())
