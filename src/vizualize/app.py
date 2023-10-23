@@ -4,7 +4,8 @@ import pandas as pd
 import streamlit as st
 
 # Load your MLflow model
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+tracking_url = st.secrets["tracking_url"]
+mlflow.set_tracking_uri(tracking_url)
 
 MODEL_NAME = "xgb_california"
 STAGE = "Staging"
