@@ -2,13 +2,14 @@
 import mlflow
 import xgboost as xgb
 from common.mlflow import setup_mlflow_experiment
-from data.load_data import load_cali_house_data
+from data.load_data import load_cali_house_data, get_features_and_labels
 
 setup_mlflow_experiment()
 mlflow.autolog(exclusive=False)
 
 with mlflow.start_run():
-    X, y = load_cali_house_data()
+    data = load_cali_house_data()
+    X, y = get_features_and_labels(data)
     data_dmatrix = xgb.DMatrix(data=X, label=y)
 
     params = {

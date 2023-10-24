@@ -5,13 +5,14 @@ import xgboost as xgb
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from common.mlflow import setup_mlflow_experiment
-from data.load_data import load_cali_house_data
+from data.load_data import load_cali_house_data, get_features_and_labels
 
 setup_mlflow_experiment()
 mlflow.autolog(exclusive=False)
 
 with mlflow.start_run():
-    X, y = load_cali_house_data()
+    data = load_cali_house_data()
+    X, y = get_features_and_labels(data)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=123

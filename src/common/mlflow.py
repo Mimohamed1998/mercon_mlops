@@ -2,7 +2,7 @@
 import mlflow
 
 
-def setup_mlflow_experiment():
+def setup_mlflow_experiment(url=None, exp_id=None):
     """mlflow setup"""
-    mlflow.set_tracking_uri("http://127.0.0.1:5000/")
-    mlflow.set_experiment(experiment_id=613298809565478243)
+    mlflow.set_tracking_uri(url)
+    mlflow.set_experiment(experiment_id=exp_id)

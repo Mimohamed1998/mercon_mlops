@@ -12,6 +12,10 @@ def load_cali_house_data():
     data = pd.DataFrame(housing.data)
     data.columns = housing.feature_names
     data["PRICE"] = housing.target
-    x, y = data.iloc[:, :-1], data.iloc[:, -1]
+    return data
 
+
+def get_features_and_labels(data):
+    """return as two x and y datasets"""
+    x, y = data.iloc[:, :-1], data.iloc[:, -1]
     return x, y
