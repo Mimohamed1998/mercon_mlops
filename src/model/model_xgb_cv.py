@@ -1,15 +1,17 @@
 """run cross validation xgb"""
+# import sys
+# sys.path.append(r"/Users/vinuraperera/Documents/mercon_mlops/src/")
 import mlflow
 import xgboost as xgb
 from common.mlflow import setup_mlflow_experiment
 from data.load_data import load_cali_house_data, get_features_and_labels
 
-setup_mlflow_experiment()
+setup_mlflow_experiment('https://35a0-35-222-156-22.ngrok-free.app/','790539312356347373')
 mlflow.autolog(exclusive=False)
 
 with mlflow.start_run():
     data = load_cali_house_data()
-    X, y = get_features_and_labels(data)
+    X, y = get_features_and_labels(data) # pylint: disable=duplicate-code
     data_dmatrix = xgb.DMatrix(data=X, label=y)
 
     params = {
